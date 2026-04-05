@@ -111,6 +111,7 @@ class Matrix {
                 C.matrix[i][j] = alpha * matrix[i][j];
             }
         }
+        return C;
     }
 
 };

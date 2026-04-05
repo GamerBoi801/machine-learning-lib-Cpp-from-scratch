@@ -53,7 +53,15 @@ class LinearRegression {
         double det = (a*d) - (b*c);
         if (det == 0.0) {
             cout << "The determinant of the 2x2 matrix is zero. so the matrix is not invertible, returning a zero matrix" << endl;
-            Matrix zeroed_matrix()
+            Matrix zeroed_matrix(2, 2);
+            return zeroed_matrix.fill_zeroes();
         }
+
+        Matrix adj(2, 2);
+        adj.matrix = {{d, -b}, {-c, a}};
+        Matrix inv = adj.scale(1.0 / det);
+        return inv;
     }
+
+    
 };
