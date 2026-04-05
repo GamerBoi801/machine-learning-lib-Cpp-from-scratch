@@ -28,6 +28,14 @@ class Matrix {
     }
 
     Matrix fill_zeroes() {
+        // converts the matrix to a zero matrix of given dimensions 
+        Matrix r(rows, cols);
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols;j++) {
+                r.matrix[i][j] = 0;
+            }
+        }
+        return r;
 
     }
 
