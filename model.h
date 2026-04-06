@@ -63,5 +63,13 @@ class LinearRegression {
         return inv;
     }
 
-    
+    void  fit_simple(Matrix & X, Matrix & Y) {
+        Xt = X.transpose(); //shape : [(n+1) x m]
+        XtX = Xt.matmul(X) // shape : [(n+1) x (n+1)]
+        XtX_inv = invert2x2(XtX);
+        Xty = Xt.matmul(Y); 
+        
+
+        
+    }
 };
