@@ -64,12 +64,11 @@ class LinearRegression {
     }
 
     void  fit_simple(Matrix & X, Matrix & Y) {
-        Xt = X.transpose(); //shape : [(n+1) x m]
-        XtX = Xt.matmul(X) // shape : [(n+1) x (n+1)]
-        XtX_inv = invert2x2(XtX);
-        Xty = Xt.matmul(Y); 
-        
-
-        
+        Matrix Xt = X.transpose(); //shape : [(n+1) x m]
+        Matrix XtX = Xt.matmul(X); // shape : [(n+1) x (n+1)]
+        Matrix XtX_inv = invert2x2(XtX); // shape: 2x2 
+        Matrix  Xty = Xt.matmul(Y); // shape [(n+1) x 1] , for simple regression [2x1]
+        weights = XtX_inv.matmul(Xty); // shape: [(n+1) x 1]
     }
+    
 };
