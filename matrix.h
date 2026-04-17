@@ -8,19 +8,30 @@ class Matrix {
     vector<vector<double>> matrix; // this is references as A to simplify explanations
     
 // constructor
-    Matrix (int r, int c) {
-        rows =r; cols=c;
-        // ini the empty vector
-        vector<vector<double>>(rows, vector<double>(cols, 0.0));
-        
+    Matrix(int r, int c) : rows(r), cols(c), matrix(r, vector<double>(c, 0.0)) {
+    // Use member initializer list - properly initializes matrix member
+}   
+
+    Matrix (const vector<vector<double>> & init) {
+        if (init.empty()) {
+            rows=cols= 0;
+            matrix = {};
+            return ;
+        }
+        // takes a 2d vector as input
+        rows = init.size();
+        cols = init[0].size();
+        matrix = init;
     }
+
+    
     // transposes the matrix
     Matrix  transpose() {
         Matrix C(cols, rows); ; //changes dimension from (rows, cols) -> (cols, rows)
-        vector<vector<double>> copy(cols, vector<double>(rows));
-        for (int i = 0; i < cols; i++) {
-            for(int j =0 ; j < rows;j++) {
-                C.matrix[i][j] = matrix[j][i];
+        for (int i = 0; i < rows; i++) {
+            for(int j =0 ; j < cols;j++) {
+                cout << matrix[i][j] << endl;
+                C.matrix[j][i] = matrix[i][j];
             }
             
         }
