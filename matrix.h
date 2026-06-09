@@ -12,7 +12,7 @@ class Matrix {
     // Use member initializer list - properly initializes matrix member
 }   
 
-    Matrix (const vector<vector<double>> & init) {
+    Matrix ( vector<vector<double>> & init) {
         if (init.empty()) {
             rows=cols= 0;
             matrix = {};
@@ -30,7 +30,7 @@ class Matrix {
         Matrix C(cols, rows); ; //changes dimension from (rows, cols) -> (cols, rows)
         for (int i = 0; i < rows; i++) {
             for(int j =0 ; j < cols;j++) {
-                cout << matrix[i][j] << endl;
+                // cout << matrix[i][j] << endl; Debug line
                 C.matrix[j][i] = matrix[i][j];
             }
             
@@ -53,8 +53,7 @@ class Matrix {
     void print_matrix() {
         for(int i =0 ; i < rows; i++) {
             for(int j =0; j < cols; j++){
-                if (j == 0) cout << matrix[i][j];
-                else cout << matrix[i][j] << ", ";
+                cout << matrix[i][j] << ", ";
             }
             cout << endl;
         }
