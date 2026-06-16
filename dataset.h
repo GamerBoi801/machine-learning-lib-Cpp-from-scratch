@@ -12,6 +12,8 @@ class Dataset {
     Matrix Y;
     int m;
     int n;
+    int mean;
+    int std_deviation;
 
     // CHANGE: default constructor needed because Matrix has no default constructor
     Dataset() : X(1,1), Y(1,1), m(0), n(0) {}
@@ -55,11 +57,13 @@ class Dataset {
                 total += X.matrix[i][j];   // CHANGE: was X.matrix[i][j] with swapped i/j — now correctly row i, col j
             }
             mean_j = (1.0 / m) * total;
+            mean = mean_j; 
 
             for (int i = 0; i < m; i++) {
                 mse += pow(X.matrix[i][j] - mean_j, 2);  // CHANGE: same index fix
             }
             std_j = sqrt((1.0 / m) * mse);
+            std_deviation = std_j;
 
             for (int i = 0; i < m; i++) {
                 X.matrix[i][j] = (X.matrix[i][j] - mean_j) / std_j;  // CHANGE: same index fix
