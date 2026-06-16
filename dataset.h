@@ -1,3 +1,6 @@
+#ifndef DATASET_H
+#define DATASET_H
+
 #include "matrix.h"
 #include <iostream>
 #include <math.h>
@@ -64,3 +67,4 @@ class Dataset {
         }
     }
 };
+#endif

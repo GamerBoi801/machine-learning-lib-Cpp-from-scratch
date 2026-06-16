@@ -1,3 +1,6 @@
+#ifndef MODEL_H
+#define MODEL_H
+
 #include <math.h>
 #include <iostream>
 #include "matrix.h"
@@ -67,26 +70,29 @@ class LinearRegression {
         weights = XtX_inv.matmul(Xty); // shape: [(n+1) x 1]
 
         
-        // weights[0][0] is the intercept - base prce for 0 sq.ft
+        // weights[0][0] is the intercept - base price for 0 sq.ft
         // weights[1][0] is the slope -- how many $ does each additional sqft adds
     }
 
     void fit_gd(Matrix & X, Matrix & Y) {
-        // sets the weigths according to the gradient descent
+        // sets the weights according to the gradient descent
         int m = X.rows;
+        
         for(int i = 0 ; i < epochs; i++) {
-            Matrix y_hat = predict(X);  //forward pass
+            Matrix y_hat = predict(X);   //forward pass
             Matrix error = y_hat.subtract(Y); // [mx1] vector showing how wrong each prediction is 
             Matrix Xt = X.transpose(); // Xt [(n+1) x m], result [(n+1) x 1]
             Matrix grad = Xt.matmul(error); 
-            grad = grad.scale(alpha);
+            grad = grad.scale(alpha / m);
             weights = weights.subtract(grad);
 
-            
+            // after every 100 epochs, print the current loss to see if it's going down
             if (i % 100 == 0) {
-                cout << "Epoch No.  " <<i << " loss: " << compute_loss(predict(X), Y) << endl; 
+                Matrix temp = predict(X);
+                cout << "Epoch No.  " <<i << " loss: " << compute_loss(temp, Y) << endl; 
             }
         }
     }
  
 };
+#endif
