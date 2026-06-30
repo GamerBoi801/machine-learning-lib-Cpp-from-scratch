@@ -1,6 +1,7 @@
 #ifndef DATASET_H
 #define DATASET_H
 
+#include <vector>
 #include "matrix.h"
 #include <iostream>
 #include <math.h>
@@ -12,8 +13,10 @@ class Dataset {
     Matrix Y;
     int m;
     int n;
-    int mean;
-    int std_deviation;
+
+    
+    vector<double>  mean;
+    vector<double> std_deviation;
 
     // CHANGE: default constructor needed because Matrix has no default constructor
     Dataset() : X(1,1), Y(1,1), m(0), n(0) {}
